@@ -1,0 +1,40 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <head>
+                <title>{% block title %}my store{% endblock %}</title>
+                <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+                <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+                <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+                
+                <link rel="stylesheet" href="{% static 'css/base.css' %}">
+                <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+                
+        </head>
+    </head>
+
+<!-- HEADER -->
+    <body>
+        <div class="page-header">
+                <img src="/static/img/snow.jpg" alt=""> 
+                <div class="store-name"><a href="/catalog/">Онлайн-магазин туристических товаров</a></div>
+                <nav>
+                        <ul class="topmenu">
+                            <li><a href="/catalog/">Каталог</a></li>
+                            <li><a href="/contacts/">Контакты</a></li>
+                            <li><a href="/contacts/">Доставка и оплата</a></li>
+                        </ul>
+                </nav>
+
+
+                </div> 
+        </div>
+
+        {% block content %}{% endblock %}
+
+    </body>
+</html>
+
+
