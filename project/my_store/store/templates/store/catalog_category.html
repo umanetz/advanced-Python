@@ -1,0 +1,47 @@
+{% extends "store/base.html" %}
+
+
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/catalog_category.css' %}?version=14">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="widget">
+                <a  href="/catalog/" class="widget-title">
+                    Категории
+                </a>
+
+                <ul class="widget-list">
+                    {% for val in categories %}
+                        <li><a href="/catalog/{{val.translit_title}}">{{val.title}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+            {% for val in products%}
+            
+            <div class="col-md-5">
+                <div class="product-item">
+                    <div class="product-img">
+                        <!-- <a href="/product/{{val.category.translit_title}}/{{val.id}}"> -->
+                        <a href="{% url 'item-detail'  category_name=val.category.translit_title pk=val.pk%}">
+                            <img src="{{val.img.url}}">
+                        </a>
+                    </div>
+                    <div class="product-list">
+                        <h3>{{val.title}}</h3>
+                        <span class="price">₽ {{val.price}}</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+            {% endfor %}
+        
+    </div>
+</div>
+{% endblock %}

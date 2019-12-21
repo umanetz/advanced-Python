@@ -1,19 +1,21 @@
 {% extends "store/base.html" %}
 
-{% block content %}
-<div class="container">
-    <div class="row">        
-        {% for key, val in dict.items %}
-            <div class="col-md-6">
-                <a href="" class="catalog">
-                    <div class="catalog-photo">
-                        <img src="{{ val.img.url }}" alt="">  
-                    </div> 
 
-                    <div class="text-block">
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/catalog.css' %}?version=9">
+
+<div class="container-fluid">
+    <div class="row">        
+        {% for val in categories %}
+
+            <div class="col-md-6 nopadding">
+                <div class="catalog">
+                    <a href="{% url 'catalog category'  category_name=val.translit_title%}">
+                            <img src="{{ val.img.url }}" alt="">
                             <p > {{val.title}} </p>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
             {% endfor %}
     </div>

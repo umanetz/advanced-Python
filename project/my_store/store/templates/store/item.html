@@ -1,0 +1,45 @@
+{% extends "store/base.html" %}
+
+
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/catalog_category.css' %}?version=6">
+<link rel="stylesheet" href="{% static 'css/item.css' %}?version=54">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="widget">
+                <a  href="/catalog/" class="widget-title">
+                    Категории
+                </a>
+
+                <ul class="widget-list">
+                    {% for val in categories %}
+                        <li><a href="/catalog/{{val.translit_title}}">{{val.title}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="item">
+            <div class="col-md-6">
+                <div class="item-img">
+                    <img src="{{item.img.url}}">
+                </div>
+            </div>
+            <div class="col-md-2">
+                    <div class="item-info">
+                            <h1>{{item.title}}</h1>
+                            <span class="price"> {{item.price}} руб.</span>
+                            <p class='description'> 
+                                    {{item.description}}
+                            </p>
+                    </div>
+            </div>
+    </div>
+        
+    </div>
+</div>
+{% endblock %}
+
+

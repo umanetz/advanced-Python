@@ -1,78 +1,89 @@
 .page-header {
   position:  relative;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   margin-top: 0;
-  height: 150px;
-  border-bottom: 1px solid #0e0d0d;
-}
+  margin-bottom: 0;
+  height: 50px;
+  /* border-bottom: 1px solid #0e0d0d; */
+  display:block;
+  font-family: Arial, sans-serif;
 
-.page-header img {
-position:  absolute;
-top: 0;
-/* bottom: 0; */
-left: 0;
-right: 0;
-height: 100%;
-width: 100%;
-margin: auto;
-transition: transform .40s ease-out;
-filter: alpha(Opacity=25);
-opacity: 0.25; 
 }
 
 .store-name{
   position: absolute;
-  top: 8px;
-  left: 60px;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
 }
 
 .store-name a{
-  font-family: 'Roboto', sans-serif;
+  font-family: "Arial Black", Gadget, sans-serif;
   color: rgb(7, 6, 63);
   text-decoration: none;
-  font-size: 30px;
-  font-weight: normal;
+  font-size: 2em;
   line-height: 3;
 }
 
-.store-name a:before {
-  content: ""; 
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  width: 80%;
-  height: 80%;
-  border-radius: 50%/30%;
-  border: 3px solid rgb(7, 6, 63);
-  border-left-color: transparent;
-  border-right-color: transparent;
-}
-
-@media (max-width: 4px) {
+@media (max-width: 420px) {
   .store-name a {font-size: 1em;}
 }
 
+.page-menu {
+  position:  relative;
+  background-color: #dcecfd;
+  height: 50px;
+  display:block
+
+}
+
 nav {position: absolute;
-  bottom: 8px;
-  left: 16px;
+  top: 70%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
 }
-.topmenu {
-backface-visibility: hidden;
-}
+
 .topmenu > li {
 display: inline-block;
-position: relative;
 }
 .topmenu > li > a {
 font-weight: normal;
-height: 0;
-line-height: 0px;
-padding: 40px ;
-/* font-weight: bold; */
+padding: 90px ;
+padding-top: 0 ;
 color: rgb(7, 6, 63);
 text-transform: uppercase;
-font-size: 18px ;
-font-family: 'Roboto', sans-serif;
+font-size: 14px ;
+font-family: Arial, sans-serif;
 }
+
 .topmenu li a:hover {color: #7391d3;}
+
+
+.auth {
+  position:  relative;
+  height: 45px;
+  width: 110px;
+  float:right;
+  margin-right: 20px;
+  display:block;
+  background-color: #ffffff;
+  border: 1px solid #0e0d0d;
+}
+.auth  img{
+  position:  absolute;
+  background-color: #ffffff;
+  height: 70%;
+  left: 50%;
+  transform: translate(-50%,0%)
+}
+.auth > a > p{
+  position:  absolute;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  width:100%;
+  bottom: -30%
+}
