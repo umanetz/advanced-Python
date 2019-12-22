@@ -10,3 +10,8 @@ h2{
     text-decoration: underline;
     color:  #365e88;
 }
+
+.title{
+    font-size: 14px ;
+    font-weight: bold;
+}

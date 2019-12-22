@@ -4,7 +4,7 @@ from django.conf.urls import handler404
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
-from .views import Catalog, CategoryList, ItemDetail, RegisterView, LoginView
+from .views import Catalog, CategoryList, ItemDetail, RegisterView, LoginView, ResetPasswordRequestView, ProfileView
 from django.contrib.auth import views as auth_views
 
 
@@ -17,6 +17,8 @@ urlpatterns = [
     url(r'^register/$', RegisterView.as_view(), name="user-register"),
     url(r'^login/$', LoginView.as_view(), name="user-login"),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='user-logout'),
+    url(r'^reset_password/$', ResetPasswordRequestView.as_view(), name="reset_password"),
+    url(r'^profile/$', ProfileView.as_view(), name="profile"),
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -9,7 +9,7 @@
                 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
                 <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
                 
-                <link rel="stylesheet" href="{% static 'css/base.css'%}?version=224">
+                <link rel="stylesheet" href="{% static 'css/base.css'%}?version=12">
                 <link rel="stylesheet" href="{% static 'css/catalog.css'%}?version=224">
 
 
@@ -24,13 +24,12 @@
             <div class="store-name"><a href="/catalog/">CAMPING WORLD</a></div>
             <div class="auth">
                 <li>
-                <a href="{% url 'user-login' %}">
                     <img src="https://img.icons8.com/windows/50/000000/gender-neutral-user.png">
-                
                     {% if user.is_authenticated %}
-                        <p>Профиль </p>    
+                        <p>{{user.username}}</p>    
                         <ul class="submenu">
-                            <li><a href="{% url 'user-logout' %}">Выйти</a></li>
+                            <li><a href="{% url 'profile' %}"> Профиль</a></li>
+                            <li><a href="{% url 'user-logout' %}"> Выйти</a></li>
                         </ul>
 
                     {% else %}
@@ -40,7 +39,6 @@
                             <li><a href="{% url 'user-register' %}">Регистрация</a></li>
                         </ul>
                     {% endif %}
-                </a>
                  </li>
             </div>
                 

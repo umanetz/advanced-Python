@@ -7,7 +7,6 @@
   /* border-bottom: 1px solid #0e0d0d; */
   display:block;
   font-family: Arial, sans-serif;
-
 }
 
 .store-name{
@@ -35,7 +34,6 @@
   background-color: #dcecfd;
   height: 50px;
   display:block
-
 }
 
 nav {position: absolute;
@@ -101,25 +99,26 @@ font-family: Arial, sans-serif;
   padding: 0;
 }
 
-.auth li :hover {color: #7391d3;}
+/* .auth li :hover {color: #7391d3;} */
 
 
 .submenu {
-  /* background: rgba(3, 3, 3, 0.1); */
+  /* background: rgb(255, 255, 255); */
 	position: absolute;
 	/* left: 10px; */
-	top: 100%;
-	z-index: 5;
+  top: 100%;
+	z-index: 1;
   width: 200px;
   opacity: 0;
 	transform: scaleY(0);
 	transform-origin :0 0;
   transition: 0.5s ease-in-out;
   border: 1px solid rgba(0, 0, 0);
+  top: 50px;
 }
 
 .submenu li {
-  display: table;;
+  display: table;
 }
 
 .submenu a {
@@ -129,7 +128,9 @@ font-family: Arial, sans-serif;
   text-decoration: none;
   width:100%;
 }
+
 .submenu li :hover {color:  #7391d3;}
+
 .auth :hover .submenu {
   opacity: 10;
 	transform: scaleY(1);

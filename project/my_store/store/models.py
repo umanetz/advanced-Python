@@ -41,10 +41,18 @@ class Product(models.Model):
         return self.title
 
 class Profile(models.Model):
+    DEFAULT = "img/avatar/default.png"
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    email = models.EmailField(max_length=70, default='')
     first_name = models.CharField(max_length = 20, default='', blank=True, null=True) 
     last_name = models.CharField(max_length = 20, default='', blank=True, null=True) 
-    city = models.CharField("City", max_length=50, blank=True, null=True)
+    city = models.CharField("City", max_length=50, default='', blank=True, null=True)
+    img = models.ImageField(upload_to='img/avatar', default=DEFAULT, blank=True, null=True) 
+
+    def set_image_to_default(self):
+        self.img.delete(save=False)  # delete old image file
+        self.img = self.DEFAULT
+        self.save()
 
 
     def __str__(self):

@@ -1,0 +1,52 @@
+{% extends "store/base.html" %}
+
+
+{% block content %}
+{% load staticfiles %}
+
+<link rel="stylesheet" href="{% static 'css/profile.css' %}?version=23">
+
+<form class="tab" method="post" enctype="multipart/form-data"> 
+{% csrf_token %}
+<div class="container">
+    <div class="row">
+            <div class="col-md-4">
+                <img src="{{profile.img.url}}" class="img-rounded" />
+                {{form.img}}
+                {% if delete_img%}
+                    <button type="submit" name='delete' value="True">Удалить фото</button>
+                {%endif%}
+                
+            </div>
+            <div class="col-md-8">
+                    <p></p>
+                    <p><label>Username:</label><br>
+                        {{profile.username}}</p>
+
+                    <p><label>Почта:</label><br>
+                        {% if profile.email %}
+                            {{profile.email}}</p>
+                        {% else %}
+                            Нет
+                        {%endif%}
+
+                    <p><label>Имя</label><br>
+                    <input type="text" value="{{profile.first_name}}" name="first_name"></p>
+
+                    <p><label>Фамилия:</label><br>
+                        <input type="text" value="{{profile.last_name}}" name="last_name"></p>
+
+                    <p><label>Город:</label><br>
+                        <input type="text" value="{{profile.city}}" name="city"></p>
+                    
+                    <div>
+                        <button type="submit">Обновить</button>
+                    </div>
+                    
+                </form>
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}

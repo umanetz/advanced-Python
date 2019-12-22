@@ -23,7 +23,14 @@
             </div>
         </div>
         <div class="col-md-6">
-
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <p style="color: rgb(6, 22, 75)">{{ message }}</p>
+                {% endfor %}
+                {% endif %}
+            </ul>
+            
             <h2 class="main-bottoms">Войти</h2>
             <h2 class="other-bottoms"><a href="/register/">Регистрация</a></h2> 
 
@@ -48,6 +55,7 @@
                 {% endfor %}
                 <button type="submit">Вход</button>
               </form>
+              <a href="/reset_password/">Забыли пароль?</a></h2> 
         </div>
 
 

@@ -124,3 +124,10 @@ MEDIA_URL = os.path.join(BASE_DIR, '/media/')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "umanetz.k@ya.ru"
+EMAIL_HOST_PASSWORD = "13031996Kate"
+EMAIL_USE_SSL = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
