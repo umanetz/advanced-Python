@@ -70,7 +70,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'my_store.wsgi.application'
-
+LOGOUT_REDIRECT_URL='/catalog/'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

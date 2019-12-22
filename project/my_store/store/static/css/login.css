@@ -1,0 +1,12 @@
+h2{
+    display: inline;
+    margin-right: 50px;
+    font-size: 30px ;
+    font-family: Arial, sans-serif;
+    line-height: 3;
+    
+}
+.other-bottoms a{
+    text-decoration: underline;
+    color:  #365e88;
+}

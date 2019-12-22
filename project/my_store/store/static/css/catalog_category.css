@@ -1,4 +1,4 @@
-* {box-sizing: border-box; margin: 0px -2px;}
+/* * {box-sizing: border-box; margin: 0px -2px;} */
 .widget {
   background: white;
   font-family: Arial, sans-serif;
@@ -8,7 +8,6 @@
 }
 .widget-title {
   text-transform: uppercase;
-  /* letter-spacing: 2px; */
   color: rgb(7, 6, 63);
   border-left: 2px solid rgb(7, 6, 63);
   padding-left: 10px;

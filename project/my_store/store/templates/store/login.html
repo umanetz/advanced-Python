@@ -1,23 +1,57 @@
 {% extends "store/base.html" %}
 
+
 {% block content %}
 {% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/catalog_category.css' %}?version=61">
+<link rel="stylesheet" href="{% static 'css/login.css' %}?version=63">
 
-<h2>Sign up Form</h2>
-<form method="post">
-  {% csrf_token %}
-  {% for field in form %}
-    <p>
-      {{ field.label_tag }}<br>
-      {{ field }}
-      {% if field.help_text %}
-        <small style="color: grey">{{ field.help_text }}</small>
-      {% endif %}
-      {% for error in field.errors %}
-        <p style="color: red">{{ error }}</p>
-      {% endfor %}
-    </p>
-  {% endfor %}
-  <button type="submit">Sign up</button>
-</form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="widget">
+                <a  href="/catalog/" class="widget-title">
+                    Категории
+                </a>
+
+                <ul class="widget-list">
+                    {% for val in categories %}
+                        <li><a href="/catalog/{{val.translit_title}}">{{val.title}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <h2 class="main-bottoms">Войти</h2>
+            <h2 class="other-bottoms"><a href="/register/">Регистрация</a></h2> 
+
+            <form method="post">
+                {% csrf_token %}
+                {% for field, errors in form.errors.items %}
+                  {% for error in errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                {% endfor %}
+                {% for field in form %}
+                  <p>
+                    {{ field.label_tag }}<br>
+                    {{ field }}
+                    {% if field.help_text %}
+                      <small style="color: grey">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                      <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                  </p>
+                {% endfor %}
+                <button type="submit">Вход</button>
+              </form>
+        </div>
+
+
+
+      </div>
+    </div>
 {% endblock %}

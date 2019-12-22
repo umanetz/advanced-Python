@@ -46,10 +46,14 @@ class Catalog(ListView):
 
 class RegisterView(View):
     def get(self, request):
-        return render(request, 'store/register.html', { 'form': SignupForm() })
+        categories = Category.objects.filter(is_active=True)
+        if request.user.is_authenticated:
+            return redirect(reverse('catalog'))
+        return render(request, 'store/register.html', { 'form': SignupForm() ,'categories': categories})
 
     def post(self, request):
         form = SignupForm(request.POST)
+        categories = Category.objects.filter(is_active=True)
         if form.is_valid():
             user = form.save()
 
@@ -57,18 +61,20 @@ class RegisterView(View):
             profile.user = user
             profile.save()
 
-            return redirect(reverse('login'))
+            return redirect(reverse('user-login'))
 
-        return render(request, 'store/register.html', { 'form': form })
+        return render(request, 'store/register.html', { 'form': form,'categories': categories })
 
 
 class LoginView(View):
     def get(self, request):
-        return render(request, 'store/login.html', { 'form':  AuthenticationForm })
+        categories = Category.objects.filter(is_active=True)
+        return render(request, 'store/login.html', { 'form':  AuthenticationForm,'categories': categories })
 
     # really low level
     def post(self, request):
         form = AuthenticationForm(request, data=request.POST)
+        categories = Category.objects.filter(is_active=True)
         if form.is_valid():
             user = authenticate(
                 request,
@@ -92,5 +98,6 @@ class LoginView(View):
                     { 'form': form, 'invalid_creds': True }
                 )
             login(request, user)
-
             return redirect(reverse('catalog'))
+        print(form.errors)
+        return render(request, 'store/login.html', { 'form': form,'categories': categories })

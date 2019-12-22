@@ -50,7 +50,10 @@ display: inline-block;
 }
 .topmenu > li > a {
 font-weight: normal;
-padding: 90px ;
+/* padding-left: 100px ; */
+padding-right: 100px ;
+padding-left: 100px ;
+
 padding-top: 0 ;
 color: rgb(7, 6, 63);
 text-transform: uppercase;
@@ -60,25 +63,30 @@ font-family: Arial, sans-serif;
 
 .topmenu li a:hover {color: #7391d3;}
 
-
 .auth {
   position:  relative;
   height: 45px;
   width: 110px;
   float:right;
-  margin-right: 20px;
+  margin-right: 200px;
   display:block;
   background-color: #ffffff;
-  border: 1px solid #0e0d0d;
+  /* border: 1px solid #0e0d0d; */
 }
-.auth  img{
+
+.auth  li {
+  list-style: none;
+}
+
+.auth   img{
   position:  absolute;
   background-color: #ffffff;
-  height: 70%;
+  height: 30px;
   left: 50%;
   transform: translate(-50%,0%)
 }
-.auth > a > p{
+
+.auth  p{
   position:  absolute;
   color: rgb(0, 0, 0);
   font-size: 14px;
@@ -87,3 +95,43 @@ font-family: Arial, sans-serif;
   width:100%;
   bottom: -30%
 }
+.auth  ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.auth li :hover {color: #7391d3;}
+
+
+.submenu {
+  /* background: rgba(3, 3, 3, 0.1); */
+	position: absolute;
+	/* left: 10px; */
+	top: 100%;
+	z-index: 5;
+  width: 200px;
+  opacity: 0;
+	transform: scaleY(0);
+	transform-origin :0 0;
+  transition: 0.5s ease-in-out;
+  border: 1px solid rgba(0, 0, 0);
+}
+
+.submenu li {
+  display: table;;
+}
+
+.submenu a {
+  color:#000000;
+  font-size: 24px;
+  /* height: 300px; */
+  text-decoration: none;
+  width:100%;
+}
+.submenu li :hover {color:  #7391d3;}
+.auth :hover .submenu {
+  opacity: 10;
+	transform: scaleY(1);
+}
+

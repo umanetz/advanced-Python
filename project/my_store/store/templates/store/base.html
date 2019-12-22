@@ -9,7 +9,9 @@
                 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
                 <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
                 
-                <link rel="stylesheet" href="{% static 'css/base.css'%}?version=221">
+                <link rel="stylesheet" href="{% static 'css/base.css'%}?version=224">
+                <link rel="stylesheet" href="{% static 'css/catalog.css'%}?version=224">
+
 
                 
         </head>
@@ -21,30 +23,39 @@
         <div class="page-header">
             <div class="store-name"><a href="/catalog/">CAMPING WORLD</a></div>
             <div class="auth">
-                <a href="/register/">
+                <li>
+                <a href="{% url 'user-login' %}">
                     <img src="https://img.icons8.com/windows/50/000000/gender-neutral-user.png">
+                
                     {% if user.is_authenticated %}
-                        <!-- <p>Профиль {{user.username}}</p> -->
-                        <p>Профиль</p> 
+                        <p>Профиль </p>    
+                        <ul class="submenu">
+                            <li><a href="{% url 'user-logout' %}">Выйти</a></li>
+                        </ul>
+
                     {% else %}
                         <p>Войти</p>
+                        <ul class="submenu">
+                            <li><a href="{% url 'user-login' %}">Войти</a></li>
+                            <li><a href="{% url 'user-register' %}">Регистрация</a></li>
+                        </ul>
                     {% endif %}
                 </a>
+                 </li>
             </div>
                 
         </div>
 
         <div class="page-menu">
-
                 <nav>
-                        <ul class="topmenu">
-                            <li><a href="/catalog/">Главная</a></li>
-                            <li><a href="/contacts/">Контакты</a></li>
-                            <li><a href="/contacts/">Доставка и оплата</a></li>
-                        </ul>
+                    <ul class="topmenu">
+                        <li><a href="/catalog/">Главная</a></li>
+                        <li><a href="/contacts/">Контакты</a></li>
+                        <li><a href="/contacts/">Доставка и оплата</a></li>
+                    </ul>
                 </nav>
-
         </div>
+          
 
         {% block content %}{% endblock %}
 
