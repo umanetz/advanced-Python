@@ -16,7 +16,7 @@ class ProductAdmin(admin.ModelAdmin):
     
     
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['email', 'first_name', 'second_name', 'city']
+    list_display = ['email', 'first_name', 'last_name', 'city']
     
 
 admin.site.register(Category, CategoryAdmin)

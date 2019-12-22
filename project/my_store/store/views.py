@@ -78,6 +78,8 @@ class RegisterView(View):
 class LoginView(View):
     def get(self, request):
         categories = Category.objects.filter(is_active=True)
+        if request.user.is_authenticated:
+            return redirect(reverse('catalog'))
         return render(request, 'store/login.html', { 'form':  AuthenticationForm,'categories': categories })
 
     # really low level
