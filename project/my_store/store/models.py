@@ -6,8 +6,6 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 
-
-
 class Category(models.Model):
     title = models.CharField(max_length=100)
     img = models.ImageField(upload_to='img/catalog')
@@ -54,13 +52,21 @@ class Profile(models.Model):
         self.img = self.DEFAULT
         self.save()
 
-
     def __str__(self):
         return self.user.username
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
+
+class Comment(models.Model):
+    item = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    text = models.TextField()
+    created_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.text
 
 
 

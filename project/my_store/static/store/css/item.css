@@ -61,3 +61,69 @@
     font-family: Arial, sans-serif;
     color: rgb(0, 0, 0);
   }
+
+  html {
+    font-size: 16px;
+  }
+
+  .media {
+    display: block;
+  }
+
+  .media-body .author {
+    display: block;
+    font-size: 1rem;
+    color: #000;
+    font-weight: 700;
+  }
+  .media-body .metadata {
+    display: block;
+    color: #777;
+    font-size: .8125rem;
+  }
+  .media-text {
+    margin-bottom: 0.25rem;
+  }
+  .title-comments {
+    font-size: 1.4rem;
+    font-weight: bold;
+    line-height: 1.5rem;
+    color: rgba(0,0,0,.87);
+    margin-bottom: 1rem;
+    padding-bottom: .25rem;
+    border-bottom: 1px solid rgba(34,36,38,.15); 
+  }
+  .media-left img {
+    width: 50px;
+  }
+
+  input[type=text] {
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+  
+  input[type=text] {
+    width: 50%;
+  }
+
+  input[type=text], select, textarea {
+    width: 50%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+
+  .fa {
+    color: rgb(158, 68, 68);
+    margin-left: 90%;
+    }
+
+  .login-word {
+    color:  #7391d3;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    }
+
+  p > a:hover {color: rgb(0, 0, 0);}
+

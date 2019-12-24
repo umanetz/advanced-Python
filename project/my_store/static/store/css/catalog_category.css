@@ -2,7 +2,7 @@
 .widget {
   background: white;
   font-family: Arial, sans-serif;
-  border-right: 1px solid #d8deeb;
+  /* border-right: 1px solid #d8deeb; */
   height: 1000px;
   min-height: 100%;
 }

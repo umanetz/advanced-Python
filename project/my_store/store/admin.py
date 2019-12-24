@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, Profile
+from .models import Category, Product, Profile, Comment
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['title', 'is_active']
@@ -17,8 +17,13 @@ class ProductAdmin(admin.ModelAdmin):
     
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ['email', 'first_name', 'last_name', 'city']
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['author', 'created_date']
+    ordering = ['created_date']
     
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Profile, ProfileAdmin)
+admin.site.register(Comment, CommentAdmin)

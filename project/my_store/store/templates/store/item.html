@@ -3,8 +3,9 @@
 
 {% block content %}
 {% load staticfiles %}
-<link rel="stylesheet" href="{% static 'store/css/catalog_category.css' %}?version=61">
-<link rel="stylesheet" href="{% static 'store/css/item.css' %}?version=54">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'store/css/catalog_category.css' %}?version=111">
+<link rel="stylesheet" href="{% static 'store/css/item.css' %}?version=113">
 
 <div class="container">
     <div class="row">
@@ -36,10 +37,59 @@
                             </p>
                     </div>
             </div>
-    </div>
-        
+        </div>
+        <div class="col-md-9">
+            <form class="tab" method="post" enctype="multipart/form-data"> 
+                {% csrf_token %}
+
+                <div class="comments">
+                    <h3 class="title-comments">Комментарии </h3>
+                    <ul class="media-list">
+                    {% for comment in item.comments.all %}
+                        <li class="media">
+                            <div class="col-md-1">
+                                <div class="media-left">
+                                    <img class="media-object img-thumbnail" src="{{comment.author.profile.img.url}}" alt="...">
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <div class="author">{{comment.author}}
+                                    {% if user.is_authenticated %}
+                                        {% if user.username == comment.author.profile.user.username%}
+                                            <!-- <button class="deleteButton" onclick="window.location.href='/remove/{{comment.pk}}'">X</button> -->
+                                            
+                                            <a href="remove/{{comment.pk}}"><i class="fa fa-close"></i></a>
+                                        {%endif%}
+                                    {%endif%}
+                                </div>
+                                <div class="metadata">
+                                    <span class="date">{{comment.created_date}}</span>
+                                </div>
+
+                                <div class="media-text text-justify">{{comment.text}}</div>
+                                <hr>
+                            </div>
+                        </li>
+                    {%endfor%}
+                    </ul>
+                    </div>
+                    {% if user.is_authenticated%}
+                        <p><input type="text"  placeholder='Добавить комментарий' name="text"></p>
+                        <div>
+                            <button type="submit">Отправить</button>
+                        </div>
+                    {% else %}
+                        <p>Оставлять комментарии могут только <a class = 'login-word' href="{% url 'user-login' %}">зерегистрированные</a> пользователи</p>
+                    {% endif %}
+
+                                    
+            </form>
+        </div>
     </div>
 </div>
+
+<hr>
+
 {% endblock %}
 
 

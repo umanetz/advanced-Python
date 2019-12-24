@@ -1,10 +1,10 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404, redirect, reverse
 from django.http import HttpResponse
-from .models import Category, Product, Profile
+from .models import Category, Product, Profile, Comment
 from django.contrib.auth import login, authenticate
 from django.views import View
 from django.views.generic import ListView, DetailView
-from .forms import SignupForm, PasswordResetRequestForm, ProfileForm
+from .forms import SignupForm, PasswordResetRequestForm, ProfileForm, CommentForm
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.generic.edit import FormView
 from django.core.validators import validate_email
@@ -12,7 +12,7 @@ from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.contrib import messages
 from django.contrib.auth.models import User
-
+from datetime import datetime
 
 DEFAULT_FROM_EMAIL = 'umanetz.k@ya.ru'
 
@@ -45,6 +45,22 @@ class ItemDetail(DetailView):
             context = super(ItemDetail, self).get_context_data(**kwargs)
             context['categories'] = Category.objects.filter(is_active=True)
             return context
+
+    def post(self, request,  **kwargs):
+        
+        item = get_object_or_404(Product, pk=kwargs['pk'])
+        form = CommentForm(request.POST)
+
+        if form.is_valid() and not 
+        request.user.is_superuser:
+            comment = form.save(commit=False)
+            comment.item = item
+            comment.author = request.user
+            comment.created_date = datetime.now()
+            comment.save()
+            return redirect('item-detail', **kwargs)
+        
+        return redirect('item-detail', **kwargs)
 
 
 class Catalog(ListView):
@@ -82,7 +98,6 @@ class LoginView(View):
             return redirect(reverse('catalog'))
         return render(request, 'store/login.html', { 'form':  AuthenticationForm,'categories': categories })
 
-    # really low level
     def post(self, request):
         form = AuthenticationForm(request, data=request.POST)
         categories = Category.objects.filter(is_active=True)
@@ -176,6 +191,12 @@ class ProfileView(FormView):
                 form.photo = request.FILES['img']
             form.save()
         return redirect(reverse('profile'))
+
+
+def comment_remove(request, **kwargs):
+    comment = get_object_or_404(Comment, pk=kwargs['pk_comment'])
+    comment.delete()
+    return redirect('item-detail', category_name = kwargs['category_name'], pk=kwargs['pk'])
     
 
     
