@@ -17,6 +17,11 @@ from datetime import datetime
 DEFAULT_FROM_EMAIL = 'umanetz.k@ya.ru'
 
 
+class Home(View):
+    def get(self, request):
+       return render(request, 'store/home.html')
+
+
 class CategoryList(ListView):
     template_name = 'store/catalog_category.html'
     context_object_name = 'products'
@@ -51,8 +56,7 @@ class ItemDetail(DetailView):
         item = get_object_or_404(Product, pk=kwargs['pk'])
         form = CommentForm(request.POST)
 
-        if form.is_valid() and not 
-        request.user.is_superuser:
+        if form.is_valid() and not request.user.is_superuser:
             comment = form.save(commit=False)
             comment.item = item
             comment.author = request.user
@@ -183,18 +187,21 @@ class ProfileView(FormView):
         profile = request.user.profile
         form = ProfileForm(request.POST, request.FILES, instance=profile)
 
+        if 'img' in request.FILES:
+            profile.set_image_to_default()
+
         if form.is_valid():
             if form.cleaned_data["delete"]:
                 profile.set_image_to_default()
-
-            if 'img' in request.FILES:
-                form.photo = request.FILES['img']
             form.save()
         return redirect(reverse('profile'))
 
 
 def comment_remove(request, **kwargs):
     comment = get_object_or_404(Comment, pk=kwargs['pk_comment'])
+    print(comment.author.username,  request.user.username)
+    if comment.author.username != request.user.username:
+        return redirect('item-detail', category_name = kwargs['category_name'], pk=kwargs['pk'])
     comment.delete()
     return redirect('item-detail', category_name = kwargs['category_name'], pk=kwargs['pk'])
     

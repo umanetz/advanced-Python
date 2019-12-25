@@ -2,8 +2,9 @@
 
 
 {% block content %}
+{% load store_tags %}
 {% load staticfiles %}
-<link rel="stylesheet" href="{% static 'store/css/catalog_category.css' %}?version=23">
+<link rel="stylesheet" href="{% static 'store/css/catalog_category.css' %}?version=24">
 
 <div class="container">
     <div class="row">
@@ -33,7 +34,8 @@
                     </div>
                     <div class="product-list">
                         <h3>{{val.title}}</h3>
-                        <span class="price">₽ {{val.price}}</span>
+                        <span class="price">₽ {{val.price|add_space}}</span>
+                        <span class="comment-count">отзывы: {{val.comments.count}}</span>
                     </div>
                 </div>
             </div>

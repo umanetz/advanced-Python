@@ -36,7 +36,10 @@ class Product(models.Model):
         super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.title
+        return self.title 
+
+    class Meta:
+        ordering = ["price"]
 
 class Profile(models.Model):
     DEFAULT = "img/avatar/default.png"
@@ -68,5 +71,7 @@ class Comment(models.Model):
     def __str__(self):
         return self.text
 
+    class Meta:
+        ordering = ['-created_date']
 
 

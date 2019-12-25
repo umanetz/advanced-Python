@@ -9,7 +9,7 @@
                 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
                 <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
                 
-                <link rel="stylesheet" href="{% static 'store/css/base.css'%}?version=123">
+                <link rel="stylesheet" href="{% static 'store/css/base.css'%}?version=124">
                 <link rel="stylesheet" href="{% static 'store/css/catalog.css'%}?version=123">
 
 
@@ -21,7 +21,7 @@
     <body>
         
         <div class="page-header">
-            <div class="store-name"><a href="/catalog/">CAMPING WORLD</a></div>
+            <div class="store-name"><a href="{% url 'home' %}">CAMPING WORLD</a></div>
             <div class="auth">
                 <li>
                     <img src="https://img.icons8.com/windows/50/000000/gender-neutral-user.png">
@@ -47,9 +47,9 @@
         <div class="page-menu">
                 <nav>
                     <ul class="topmenu">
-                        <li><a href="/catalog/">Главная</a></li>
-                        <li><a href="/contacts/">Контакты</a></li>
-                        <li><a href="/contacts/">Доставка и оплата</a></li>
+                        <li><a href="{% url 'catalog' %}">Каталог</a></li>
+                        <li><a href="{% url 'home' %}">Контакты</a></li>
+                        <li><a href="{% url 'home' %}">Доставка и оплата</a></li>
                     </ul>
                 </nav>
         </div>

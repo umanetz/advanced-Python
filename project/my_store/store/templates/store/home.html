@@ -1,0 +1,41 @@
+{% extends "store/base.html" %}
+
+
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" href="/static/store/bxslider/jquery.bxslider.css">
+<link rel="stylesheet" href="{% static 'store/css/home.css' %}?version=15">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="/static/store/bxslider/jquery.bxslider.js"></script>
+
+
+<script>
+  $(document).ready(function(){
+    $('.bxslider').bxSlider({
+    pager: false, // отключаем индикатор количества слайдов
+    nextText:'',
+    prevText:'',
+    speed: 1,
+    // pagerCustom: '#bx-pager'
+    });
+  });
+</script>
+
+<ul class="bxslider">
+        <li>
+            <a href="{% url 'home'%}">
+                <img src="media/img/pictures/snow1.jpg" title="поход в горы"/>
+                <div class='title-big'> Бесплатная доставка!</div>
+                <div class='title-small'> при заказе до 31 декабря</div>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'home'%}">
+                <img src="media/img/pictures/summer.jpg" title="Утренняя роса" />
+                <div class='title-big2'> Новое поступление!</div>
+            </a>
+        </li>
+</ul>
+
+{% endblock %}
