@@ -19,7 +19,8 @@ urlpatterns = [
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='user-logout'),
     url(r'^reset_password/$', ResetPasswordRequestView.as_view(), name="reset_password"),
     url(r'^profile/$', ProfileView.as_view(), name="profile"),
-    url(r'^remove/(?P<pk_comment>\d+)$', views.comment_remove, name='comment_remove'),
+    # url(r'^remove/(?P<pk_comment>\d+)/$', views.comment_remove, name='comment_remove'),
+    url(r'^product/(?P<category_name>[a-z]+)/(?P<pk>\d+)/remove/(?P<pk_comment>\d+)/$', views.comment_remove, name='comment_remove'),
 
 ]
 urlpatterns += staticfiles_urlpatterns()

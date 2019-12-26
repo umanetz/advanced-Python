@@ -6,7 +6,7 @@
 {% load store_tags %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{% static 'store/css/catalog_category.css' %}?version=111">
-<link rel="stylesheet" href="{% static 'store/css/item.css' %}?version=114">
+<link rel="stylesheet" href="{% static 'store/css/item.css' %}?version=121">
 
 <div class="container">
     <div class="row">
@@ -23,6 +23,7 @@
                 </ul>
             </div>
         </div>
+
         <div class="item">
             <div class="col-md-6">
                 <div class="item-img">
@@ -36,9 +37,22 @@
                             <p class='description'> 
                                     {{item.description}}
                             </p>
+                    
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <p >{{ message }}</p>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    <div class="add-to-cart">
+                        <a href="{% url 'cart-add' pk_item=item.pk%}" class="cart-button">В корзину</a>
                     </div>
+                </div>
             </div>
         </div>
+
         <div class="col-md-9">
             <form class="tab" method="post" enctype="multipart/form-data"> 
                 {% csrf_token %}
@@ -57,7 +71,9 @@
                                 <div class="author">{{comment.author}}
                                     {% if user.is_authenticated %}
                                         {% if user.username == comment.author.profile.user.username%}
-                                            <a href="remove/{{comment.pk}}"><i class="fa fa-close"></i></a>
+                                            
+                                            <a href="{% url 'comment_remove' category_name=item.category.translit_title pk=item.pk pk_comment=comment.pk%}"><i class="fa fa-close"></i></a>
+                                            <!-- <a href="remove/{{comment.pk}}"><i class="fa fa-close"></i></a> -->
                                         {%endif%}
                                     {%endif%}
                                 </div>

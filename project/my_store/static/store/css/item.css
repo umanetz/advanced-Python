@@ -1,4 +1,6 @@
-.item{
+ /* Дизайн страницы*/
+ 
+ .item{
       margin: 30px -10px 0 0; 
       
 }
@@ -48,7 +50,7 @@
     font-size: 16px ;
     left: 10px;
     font-weight: bold;
-    top: 50px;
+    top: 80px;
     font-family: Arial, sans-serif;
     color: rgb(0, 0, 0);
   }
@@ -61,6 +63,39 @@
     font-family: Arial, sans-serif;
     color: rgb(0, 0, 0);
   }
+
+.messages{
+    position: absolute;
+    font-size: 12px ;
+    bottom: 20px;
+    padding-left: 0px;
+    font-family: Arial, sans-serif;
+    color: red;
+    width: 100%
+  }
+
+   /* Иконка корзины*/
+
+.add-to-cart {float: left;}
+.add-to-cart .cart-button {
+  position: absolute;
+  text-decoration: none;
+  color: rgb(82, 79, 75);
+  padding-right: 20px;
+  transition: .4s linear;
+  bottom: 0px;
+  font-size: 18px ;
+  font-family: Arial, sans-serif;
+
+}
+.cart-button:before {
+  content: "\f07a";
+  font-family: FontAwesome;
+  margin-right: 10px;
+}
+.add-to-cart:hover .cart-button {color: rgb(93, 151, 238);}
+
+   /* Для отзывов */
 
   html {
     font-size: 16px;

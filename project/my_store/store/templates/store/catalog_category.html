@@ -4,7 +4,7 @@
 {% block content %}
 {% load store_tags %}
 {% load staticfiles %}
-<link rel="stylesheet" href="{% static 'store/css/catalog_category.css' %}?version=24">
+<link rel="stylesheet" href="{% static 'store/css/catalog_category.css' %}?version=25">
 
 <div class="container">
     <div class="row">
@@ -27,7 +27,6 @@
             <div class="col-md-5">
                 <div class="product-item">
                     <div class="product-img">
-                        <!-- <a href="/product/{{val.category.translit_title}}/{{val.id}}"> -->
                         <a href="{% url 'item-detail'  category_name=val.category.translit_title pk=val.pk%}">
                             <img src="{{val.img.url}}">
                         </a>

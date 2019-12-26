@@ -52,17 +52,16 @@ class ItemDetail(DetailView):
             return context
 
     def post(self, request,  **kwargs):
-        
         item = get_object_or_404(Product, pk=kwargs['pk'])
         form = CommentForm(request.POST)
 
-        if form.is_valid() and not request.user.is_superuser:
+        if form.is_valid():
             comment = form.save(commit=False)
             comment.item = item
             comment.author = request.user
             comment.created_date = datetime.now()
             comment.save()
-            return redirect('item-detail', **kwargs)
+            # return redirect('item-detail', **kwargs)
         
         return redirect('item-detail', **kwargs)
 
@@ -176,7 +175,7 @@ class ProfileView(FormView):
 
     def get(self, request):
         form = ProfileForm
-        if request.user.is_authenticated and not request.user.is_superuser:
+        if request.user.is_authenticated:
                 profile = get_object_or_404(Profile, user__username=request.user.username)
                 img = profile.img
                 profile.username = profile.user.username
@@ -186,9 +185,8 @@ class ProfileView(FormView):
     def post(self, request):
         profile = request.user.profile
         form = ProfileForm(request.POST, request.FILES, instance=profile)
-
         if 'img' in request.FILES:
-            profile.set_image_to_default()
+                profile.set_image_to_default()
 
         if form.is_valid():
             if form.cleaned_data["delete"]:
@@ -199,12 +197,9 @@ class ProfileView(FormView):
 
 def comment_remove(request, **kwargs):
     comment = get_object_or_404(Comment, pk=kwargs['pk_comment'])
-    print(comment.author.username,  request.user.username)
+
     if comment.author.username != request.user.username:
         return redirect('item-detail', category_name = kwargs['category_name'], pk=kwargs['pk'])
     comment.delete()
     return redirect('item-detail', category_name = kwargs['category_name'], pk=kwargs['pk'])
-    
-
-    
     

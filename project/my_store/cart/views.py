@@ -1,48 +1,49 @@
 from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404, get_object_or_404, redirect, reverse
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
 from .models import Cart, CartItem
+from store.models import Product
+from .cartmethod import get_or_create_cart, close_cart
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.http import HttpResponseRedirect
+
+
+
 
 ##-------------- Cart Views --------------------------------------
-class DetailCart(DetailView):
-    model = Cart
-    template_name='cart/detail_cart.html'
 
-class ListCart(ListView):
-    model = Cart
-    context_object_name = 'carts'
-    template_name='cart/list_carts.html'
+def cart_detail(request):
+    cart = get_or_create_cart(request)
+    # if not cart:
+    #     messages.error(request, f'Пожалуйста, авторизуйтесь')
+    return render(request, 'cart/cart.html', {'cart':cart})
 
-class CreateCart(CreateView):
-    model = Cart
-    template_name = 'cart/create_cart.html'
 
-class Updatecart(UpdateView):
-    model = Cart
-    template_name = 'cart/update_cart.html'
+def cart_add(request, pk_item):
+    cart = get_or_create_cart(request)
+    product = get_object_or_404(Product, pk = pk_item)
+    category_name = product.category.translit_title
 
-class DeleteCart(DeleteView):
-    model = Cart
-    template_name = 'cart/delete_cart.html'
+    if not cart:
+        messages.error(request, 'Пожалуйста, авторизуйтесь')
+        return redirect('item-detail', category_name = category_name, pk=pk_item)
+        
+    count = cart.item_count()
+    if count >= Cart.max_count:
+        messages.error(request, f'Максимальное количество товаров в корзине {Cart.max_count}')
+        return redirect('item-detail', category_name = category_name, pk=pk_item)
+    
+    cart_item = CartItem.objects.filter(product=product, cart=cart)
 
-##-------------- CartItem Views --------------------------------------
-class DetailCartItem(DetailView):
-    model = CartItem
-    template_name='cartitem/detail_cartitem.html'
-
-class ListCartItem(ListView):
-    model = CartItem
-    context_object_name = 'cartitems'
-    template_name='cartitem/list_cartitems.html'
-
-class CreateCartItem(CreateView):
-    model = CartItem
-    template_name = 'cartitem/create_cartitem.html'
-
-class UpdateCartItem(UpdateView):
-    model = CartItem
-    template_name = 'cartitem/update_cartitem.html'
-
-class DeleteCartItem(DeleteView):
-    model = Cart
-    template_name = 'cartitem/delete_cartitem.html'
+    if not cart_item:
+        CartItem(product=product, cart=cart).save()
+    else:
+        cart_item[0].quantity += 1
+        cart_item[0].save()
+    cart.save()
+    return redirect('item-detail', category_name = category_name, pk=pk_item)
+    
+    

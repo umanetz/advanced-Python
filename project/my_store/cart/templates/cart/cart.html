@@ -1,0 +1,47 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+{% load staticfiles %}
+{% load store_tags %}
+
+<link rel="stylesheet" href="{% static 'cart/css/cart.css' %}?version=6">
+
+{% if not cart %}
+    <p>Пожалуйста, <a class = 'login-word' href="{% url 'user-login' %}">авторизуйтесь</a></p>
+
+{%else%}
+<div class="col-md-9">
+    <div class="cart">
+        <h3 class="title-cart">Корзина </h3>
+        <ul class="media-list">
+        {% for item in cart.cartitem_set.all %}
+            <a href="{% url 'item-detail' pk=item.product.pk category_name=item.product.category.translit_title%}"> 
+            <li class="media">
+                <div class="col-md-1">
+                    <div class="media-left">
+                        <img class="media-object" src="{{item.product.img.url}}" alt="...">
+                    </div>
+                </div>
+                <div class="media-body">
+                    <div class="title-item">{{item.product.title}}
+                            
+                    </div>
+                    <a href=""><i class="fa fa-close"></i></a>
+                    <div class="metadata">
+                        <span class="price">{{item.product.price|add_space}} руб. x {{item.quantity}}</span>
+                    </div>
+
+                    <hr>
+                </div>
+            </li>
+            </a>
+        {%endfor%}
+        <div class="total-price">Товары на сумму: {{cart.total_price|add_space}} руб.</div>
+        </ul>
+        </div>
+
+    </div>
+
+{% endif %}
+
+{% endblock %}

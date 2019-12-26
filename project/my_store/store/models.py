@@ -51,9 +51,10 @@ class Profile(models.Model):
     img = models.ImageField(upload_to='img/avatar', default=DEFAULT, blank=True, null=True) 
 
     def set_image_to_default(self):
-        self.img.delete(save=False)  # delete old image file
-        self.img = self.DEFAULT
-        self.save()
+        if self.img != self.DEFAULT:
+            self.img.delete(save=False)  # delete old image file
+            self.img = self.DEFAULT
+            self.save()
 
     def __str__(self):
         return self.user.username

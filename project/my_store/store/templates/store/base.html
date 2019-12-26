@@ -1,4 +1,6 @@
 {% load staticfiles %}
+{% load store_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,12 +10,10 @@
                 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
                 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
                 <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
-                
-                <link rel="stylesheet" href="{% static 'store/css/base.css'%}?version=124">
-                <link rel="stylesheet" href="{% static 'store/css/catalog.css'%}?version=123">
-
-
-                
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                <link rel="stylesheet" href="{% static 'store/css/base.css'%}?version=128">
+                <link rel="stylesheet" href="{% static 'store/css/catalog.css'%}?version=124">
+           
         </head>
     </head>
 
@@ -40,6 +40,16 @@
                         </ul>
                     {% endif %}
                  </li>
+            <div class="cart-item">
+                <a href="{% url 'cart-detail' %}" class="cart-button">
+                    {% if user.is_authenticated %}
+                        {{user|cart_total_item}} тов.
+                    {% else %}
+                        0
+                    {% endif %}
+                </a>
+            </div>
+
             </div>
                 
         </div>

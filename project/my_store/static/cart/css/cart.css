@@ -1,0 +1,60 @@
+p{
+    font-size: 20px ;
+    /* bottom: 20px; */
+    padding-left: 10px;
+    font-family: Arial, sans-serif;
+    color: rgb(0, 0, 0);
+    width: 100%
+  }
+
+  html {
+    font-size: 16px;
+  }
+
+  .media {
+    display: block;
+  }
+
+  .media-body{
+    margin-left: 150px;
+    height: 90px;
+  }
+
+  .media-body .title-item {
+    display: block;
+    font-size: 1rem;
+    color: #000;
+    font-weight: 700;
+  }
+  .media-body .metadata {
+    display: block;
+    color: rgb(161, 26, 26);
+    font-size: 18px;
+  }
+  .media-price {
+    margin-bottom: 0.25rem;
+  }
+
+  .media-object{
+    width: 90px;
+    height: 80px;
+  }
+
+  .total-price{
+    font-size: 18px;
+  }
+
+.media-list a {
+  text-decoration: none;
+}
+.fa {
+  color: rgb(158, 68, 68);
+  margin-left: 90%;
+  }
+  
+.title-item{
+    font-size: 24px;
+    font-weight: bold;
+    color: rgba(0,0,0,.87);
+
+  } 
